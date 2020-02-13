@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Controller (sample)</title>
+	<script src="angularjs.js"></script>
+	<style>
+		body{
+			background-color: #EEFFFE;
+		}
+		#title{
+			background-color: rgba(112, 146, 190);
+			font-size: 45px;
+			height: 85px;
+			font-family: "Cooper Black", Cooper, san-serif;
+		}
+		#heading{
+			font-size: 80px;
+			text-align: center;
+			background-color: rgba(111,183,255);
+			height: 100px;
+			font-family: "Castellar", Castellar, san-serif;
+		}
+		#score{
+			font-size: 300px;
+			text-align: center;
+			font-family: "Aharoni", Aharoni, san-serif;
+			height: 300px;
+		}
+		button {
+			height: 80px;
+			width: 80%;
+			font-size: 35px;
+			border-radius: 50px;
+			background-color: rgba(0,128,192);
+			color: white;
+			font-family: "Century", Century, san-serif;
+			font-weight: bold;
+			box-shadow: 5px 3px 3px, rgb(0,0,0,0.5);
+		}
+	</style>
+</head>
+<body>
+<div ng-controller="mycontrol" ng-app="app">
+
+<table  width="100%" align="center">
+	<tr id="title">
+		<td colspan="4" align="center">SCOREBOARD</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input type="text" ng-model="name1"></td>
+		<td colspan="2" align="center"><input type="text" ng-model="name2"></td>
+	</tr>
+	<tr id="heading">
+		<th colspan="2" ng-bind="name1">TEAM 1</th>
+		<th colspan="2" ng-bind="name2">TEAM 2</th>
+	</tr>
+	<tr id="score">
+		<td colspan="2" height="100px">{{team1}}<br> <div id="cap1"></div></td>
+		<td colspan="2" height="100px">{{team2}} <br> <div id="cap2"></div></td>
+	</tr>
+	<tr>
+		<td align="right"><button ng-click="firstinc()">Increment</button></td>
+		<td><button ng-click="firstdec()">Decrement</button></td>
+		<td align="right"><button ng-click="secondinc()">Increment</button></td>
+		<td><button ng-click="seconddec()">Decrement</button></td>
+	</tr>
+</table>
+</div>
+
+<script>
+	var apps=angular.module("app",[]);
+
+
+	apps.controller("mycontrol", 
+	function($scope)
+	{
+		$scope.team1 = 0;
+		$scope.team2 = 0;
+			$scope.firstinc = function()
+			{
+				$scope.team1++;
+				if ($scope.team1==20) {
+					alert("first TEAM: You WIN!,  second TEAM: You LOSE!");
+					document.getElementById("cap2")="You LOSE!";
+				}
+			};
+			$scope.firstdec = function()
+			{
+				$scope.team1--;
+
+			};
+			$scope.secondinc = function()
+			{
+				$scope.team2++;
+				if ($scope.team2==20) {
+					alert("second TEAM: You WIN!,  first TEAM: You LOSE!");
+				}
+
+			};
+			$scope.seconddec = function()
+			{
+				$scope.team2--;
+
+			};
+	});
+
+</script>
+</body>
+</html>
